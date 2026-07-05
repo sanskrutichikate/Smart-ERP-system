@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../api";
 
 function ItemMaster() {
   const [item_name, setItemName] = useState("");
@@ -11,7 +11,7 @@ function ItemMaster() {
   // Fetch items from backend
   const fetchItems = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/item/items");
+         const res = await api.get("/api/item/items");
       setItems(res.data);
     } catch (error) {
       console.log(error);
@@ -27,7 +27,7 @@ function ItemMaster() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/api/item/items", {
+      await api.post("/api/item/items", {
         item_name,
         quantity,
         price,

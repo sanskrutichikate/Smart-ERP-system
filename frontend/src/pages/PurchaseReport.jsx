@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../api";
 
 function PurchaseReport() {
   const [purchases, setPurchases] = useState([]);
@@ -12,8 +12,8 @@ function PurchaseReport() {
 
   const fetchPurchases = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:5000/api/reports/purchase"
+      const res = await api.get(
+        "/api/reports/purchase"
       );
 
       setPurchases(res.data);

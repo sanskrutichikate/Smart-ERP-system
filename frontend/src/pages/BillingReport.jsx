@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../api";
 
 function BillingReport() {
   const [bills, setBills] = useState([]);
@@ -12,10 +12,7 @@ function BillingReport() {
 
   const fetchBills = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:5000/api/reports/bills"
-      );
-
+           const res = await api.get("/api/reports/bills");
       setBills(res.data);
       setFilteredBills(res.data);
     } catch (error) {

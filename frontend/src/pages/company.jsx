@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../api";
 
 function Company() {
   const [form, setForm] = useState({
@@ -23,7 +23,7 @@ function Company() {
   // Fetch companies
   const fetchCompanies = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/company");
+         const res = await api.get("/api/company");
       console.log(res.data);
       setCompanies(res.data);
     } catch (error) {
@@ -34,8 +34,8 @@ function Company() {
   // Add company
   const addCompany = async () => {
     try {
-      await axios.post(
-        "http://localhost:5000/api/company/add",
+      await api.post(
+        "/api/company/add",
         form
       );
 

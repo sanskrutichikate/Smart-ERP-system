@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../api";
 
 function ProfitReport() {
 
@@ -19,8 +19,8 @@ function ProfitReport() {
 
       try{
 
-          const res = await axios.get(
-              "http://localhost:5000/api/reports/profit"
+          const res = await api.get(
+              "/api/reports/profit"
           );
 
           setProfit(res.data);

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import api from "../api";
 import { Link } from "react-router-dom";
 
 function Register() {
@@ -20,11 +20,10 @@ function Register() {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/register",
+      const res = await api.post(
+        "/api/auth/register",
         formData
       );
-
       alert(res.data.message);
 
     } catch (error) {

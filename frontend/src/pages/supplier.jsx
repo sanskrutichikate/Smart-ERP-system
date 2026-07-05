@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../api";
 
 function Supplier() {
   const [form, setForm] = useState({
@@ -19,16 +19,17 @@ function Supplier() {
     });
   };
 
-  const fetchSuppliers = async () => {
-    const res = await axios.get(
-      "http://localhost:5000/api/supplier"
-    );
+ const fetchSuppliers = async () => {
+  try {
+    const res = await api.get("/api/supplier");
     setSuppliers(res.data);
-  };
-
+  } catch (error) {
+    console.error(error);
+  }
+};
   const addSupplier = async () => {
-    await axios.post(
-      "http://localhost:5000/api/supplier/add",
+    await api.post(
+      "/api/supplier/add",
       form
     );
 

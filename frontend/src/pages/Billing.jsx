@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../api";
 
 function Billing() {
   const [customers, setCustomers] = useState([]);
@@ -27,7 +27,7 @@ function Billing() {
 
   const fetchCustomers = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/customers");
+     const res = await api.get("/api/customers");
       setCustomers(res.data);
     } catch (error) {
       console.log(error);
@@ -36,7 +36,7 @@ function Billing() {
 
   const fetchItems = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/item");
+      const res = await api.get("/api/item");
       setItems(res.data);
     } catch (error) {
       console.log(error);
@@ -94,7 +94,7 @@ function Billing() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/api/billing/add", {
+      await api.post("/api/billing/add", {
         invoice_no: invoiceNo,
         customer_id: customerId,
         subtotal,

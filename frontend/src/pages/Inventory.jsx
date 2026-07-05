@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../api";
 
 function Inventory() {
   const [activeTab, setActiveTab] = useState("create");
@@ -14,7 +14,7 @@ function Inventory() {
   // Fetch items
   const fetchItems = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/item/items");
+      const res =  await api.get("/api/item/items");
       setItems(res.data);
     } catch (error) {
       console.log(error);
@@ -30,7 +30,7 @@ function Inventory() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/api/item/items", {
+      await api.post("/api/item/items", {
         item_name,
         quantity,
         price,
@@ -54,7 +54,7 @@ function Inventory() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/api/stock/in", {
+      await api.post("/api/stock/in", {
         item_id,
         quantity
       });
@@ -74,7 +74,7 @@ function Inventory() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/api/stock/out", {
+      await api.post("/api/stock/out", {
         item_id,
         quantity
       });

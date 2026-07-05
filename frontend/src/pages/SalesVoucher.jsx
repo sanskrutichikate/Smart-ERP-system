@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../api";
 
 function SalesVoucher() {
   const [customers, setCustomers] = useState([]);
@@ -21,7 +21,7 @@ function SalesVoucher() {
 
   const fetchCustomers = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/customers");
+      const res = await api.get("/api/customers");
       setCustomers(res.data);
     } catch (error) {
       console.log(error);
@@ -30,7 +30,7 @@ function SalesVoucher() {
 
   const fetchItems = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/items");
+      const res = await api.get("/api/items");
       setItems(res.data);
     } catch (error) {
       console.log(error);
@@ -63,7 +63,7 @@ function SalesVoucher() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/api/sales/add", {
+      await api.post("/api/sales/add", {
         voucher_no: voucherNo,
         customer_id: customerId,
         item_id: itemId,

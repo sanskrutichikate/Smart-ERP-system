@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-
+import api from "../api";
 function Item() {
   const [form, setForm] = useState({
     itemName: "",
@@ -19,15 +18,13 @@ function Item() {
   };
 
   const fetchItems = async () => {
-    const res = await axios.get(
-      "http://localhost:5000/api/item"
-    );
+      const res = await api.get("/api/item");
     setItems(res.data);
   };
 
   const addItem = async () => {
-    await axios.post(
-      "http://localhost:5000/api/item/add",
+    await api.post(
+      "/api/item/add",
       form
     );
 
